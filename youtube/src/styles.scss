@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+// html {
+//   height: 100%;
+// }
+
+body {
+  background-color: #eee;
+  // height: 100%;
+}
+
+.notcard {
+  background-color: white;
+  border-radius: 4px;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
+}
+
+.notsidebar {
+  background-color: #4548e1;
+  color: white;
+  height: calc(100vh - 56px);
+  padding: 10px;
+  // box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
+}
+
+.nothidden {
+  display: none;
+}
