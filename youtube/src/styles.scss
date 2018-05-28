@@ -21,7 +21,11 @@ body {
   color: white;
   height: calc(100vh - 56px);
   padding: 10px;
-  // box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
+  width: 200px;
+  margin-left: 0px;
+  transition: 500ms ease;
+  // box-shadow: 2px 0 4px rgba(0, 0, 0, .5);
+  // overflow: hidden;
 }
 
 .nothidden {

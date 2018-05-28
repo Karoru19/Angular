@@ -1,11 +1,9 @@
 <app-navbar (hideSidebar)="hideSidebar($event)"></app-navbar>
-<!-- <div class="container-fluid"> -->
 <div class="row no-gutters">
-  <div [ngClass]="{'col-3': sidebar, 'nothidden': !sidebar}">
+  <div [ngStyle]="{'margin-left.px': sizeSidebar}" class="notsidebar">
     <app-sidebar></app-sidebar>
   </div>
-  <div [ngClass]="{'col-9': sidebar, 'col-12': !sidebar}" style="background-color: red">
-
+  <div class="col">
+    
   </div>
 </div>
-<!-- </div> -->

@@ -7,8 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-  sidebar = true;
+  sizeSidebar = 0;
   hideSidebar = event => {
-    this.sidebar = !this.sidebar;
+    if (this.sizeSidebar === -204) {
+      this.sizeSidebar = 0;
+    } else {
+      this.sizeSidebar = -204;
+    }
   }
 }
