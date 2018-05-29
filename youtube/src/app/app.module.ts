@@ -7,6 +7,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { VideoListComponent } from './components/video-list/video-list.component';
 import { VideoElementComponent } from './components/video-element/video-element.component';
+import { TestComponent } from './components/test/test.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,13 +16,11 @@ import { VideoElementComponent } from './components/video-element/video-element.
     NavbarComponent,
     SidebarComponent,
     VideoListComponent,
-    VideoElementComponent
+    VideoElementComponent,
+    TestComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule
-  ],
+  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
