@@ -11,9 +11,11 @@ body {
 .notcard {
   background-color: white;
   border-radius: 4px;
-  margin: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.notcard-padding {
   padding: 10px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
 }
 
 .notsidebar {
@@ -24,7 +26,7 @@ body {
   width: 200px;
   margin-top: 56px;
   margin-left: 0px;
-  transition: 500ms ease;
+  transition: margin 500ms ease;
   // box-shadow: 2px 0 4px rgba(0, 0, 0, .5);
   // overflow: hidden;
 }
@@ -37,4 +39,8 @@ body {
   margin-top: 56px;
   margin-left: 204px;
   transition: 500ms ease;
+}
+
+.pointer {
+  cursor: pointer;
 }

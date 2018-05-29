@@ -14,8 +14,8 @@ export class TestComponent implements OnInit {
     //   // data = data.items.map(element => element.snippet);
     //   console.log(data);
     // });
-    this.yt.getVideo('cH-yA8U2XgI').subscribe(data => {
-      console.log(data);
-    });
+    // this.yt.getVideo('cH-yA8U2XgI').subscribe(data => {
+    //   console.log(data);
+    // });
   }
 }

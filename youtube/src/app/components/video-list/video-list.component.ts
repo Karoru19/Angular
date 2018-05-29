@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { YtApiServiceService } from '../../services/yt-api-service.service';
+import { VideoItem } from '../../models/video-item';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-video-list',
@@ -6,20 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./video-list.component.scss']
 })
 export class VideoListComponent implements OnInit {
+  items: Array<VideoItem> = [];
 
-  items = [];
-
-  constructor() {
-    for (let i = 0; i < 10; i++) {
-      this.items.push({
-        title: 'Some Title ' + i,
-        channel: 'Some Channel ' + i,
-        thumb: '../../../assets/thumb.png'
+  constructor(private yt: YtApiServiceService, private route: ActivatedRoute) {
+    route.params.subscribe(params => {
+      console.log(params);
+      const query = params['query'] || '';
+      yt.getVideos(query).subscribe(data => {
+        this.items = data.items.map(element => ({
+          id: element.id,
+          title: element.snippet.title,
+          channelId: element.snippet.channelId,
+          channelTitle: element.snippet.channelTitle,
+          thumbnailUrl: element.snippet.thumbnails.default.url
+        }));
       });
-    }
+    });
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

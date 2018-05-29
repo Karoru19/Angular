@@ -1,15 +1,17 @@
-<div class="row text-center">
-  <div class="col-12">
-    <img class="img-fluid rounded" [src]="video.thumb" width="100%">
+<div class="notcard notcard-padding h-100">
+  <div class="text-center ">
+    <img class="img-fluid rounded" [src]="video.thumbnailUrl" width="100%">
   </div>
-</div>
-<div class="row">
-  <div class="col-12 text-truncate">
-    <div class="title">{{video.title}}</div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-12 text-truncate">
-    <div class="channel">{{video.channel}}</div>
+  <div>
+    <div class="row mt-2">
+      <div class="col-12">
+        <div class="video-title pointer" [title]='video.title'>{{(video.title.length > 37)?(video.title|slice:0:34)+'...':(video.title)}}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="channel-title">{{video.channelTitle}}</div>
+      </div>
+    </div>
   </div>
 </div>

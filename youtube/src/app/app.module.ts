@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -9,6 +10,7 @@ import { VideoListComponent } from './components/video-list/video-list.component
 import { VideoElementComponent } from './components/video-element/video-element.component';
 import { TestComponent } from './components/test/test.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 import { DerpiService } from './services/derpi/derpi.service';
 
@@ -24,9 +26,11 @@ import { DerpiService } from './services/derpi/derpi.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [DerpiService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

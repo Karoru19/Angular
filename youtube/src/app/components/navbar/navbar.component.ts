@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -6,15 +7,19 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  @Output() hideSidebar = new EventEmitter <any> ();
+  @Output() hideSidebar = new EventEmitter<any>();
 
-  hide = () => {
+  query: string;
+
+  hide() {
     this.hideSidebar.emit(null);
   }
 
-  constructor() { }
+  constructor(private router: Router) {}
 
-  ngOnInit() {
+  goSearch() {
+    this.router.navigate(['/videos', { query: this.query }]);
   }
 
+  ngOnInit() {}
 }
