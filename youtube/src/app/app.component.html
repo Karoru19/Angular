@@ -1,9 +1,11 @@
-<app-navbar (hideSidebar)="hideSidebar($event)"></app-navbar>
+<div class="fixed-top">
+  <app-navbar (hideSidebar)="hideSidebar($event)"></app-navbar>
+</div>
 <div class="row no-gutters">
-  <div [ngStyle]="{'margin-left.px': sizeSidebar}" class="notsidebar">
+  <div [ngStyle]="{'margin-left.px': sizeSidebar}" class="notsidebar fixed-top">
     <app-sidebar></app-sidebar>
   </div>
-  <div class="col">
-    
+  <div class="col notcontent" [ngStyle]="{'margin-left.px': sizeContent}">
+    <app-video-list></app-video-list>
   </div>
 </div>

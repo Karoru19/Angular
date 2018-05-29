@@ -7,7 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideoListComponent implements OnInit {
 
-  constructor() { }
+  items = [];
+
+  constructor() {
+    for (let i = 0; i < 10; i++) {
+      this.items.push({
+        title: 'Some Title ' + i,
+        channel: 'Some Channel ' + i,
+        thumb: '../../../assets/thumb.png'
+      });
+    }
+  }
 
   ngOnInit() {
   }

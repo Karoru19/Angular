@@ -22,6 +22,7 @@ body {
   height: calc(100vh - 56px);
   padding: 10px;
   width: 200px;
+  margin-top: 56px;
   margin-left: 0px;
   transition: 500ms ease;
   // box-shadow: 2px 0 4px rgba(0, 0, 0, .5);
@@ -30,4 +31,10 @@ body {
 
 .nothidden {
   display: none;
+}
+
+.notcontent {
+  margin-top: 56px;
+  margin-left: 204px;
+  transition: 500ms ease;
 }
