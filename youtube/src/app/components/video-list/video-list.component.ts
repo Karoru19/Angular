@@ -13,11 +13,10 @@ export class VideoListComponent implements OnInit {
 
   constructor(private yt: YtApiServiceService, private route: ActivatedRoute) {
     route.params.subscribe(params => {
-      console.log(params);
       const query = params['query'] || '';
       yt.getVideos(query).subscribe(data => {
         this.items = data.items.map(element => ({
-          id: element.id,
+          id: element.id.videoId,
           title: element.snippet.title,
           channelId: element.snippet.channelId,
           channelTitle: element.snippet.channelTitle,

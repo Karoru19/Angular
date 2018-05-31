@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { DerpiService } from './services/derpi/derpi.service';
+import { VideoViewComponent } from './components/video-view/video-view.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DerpiService } from './services/derpi/derpi.service';
     SidebarComponent,
     VideoListComponent,
     VideoElementComponent,
-    TestComponent
+    TestComponent,
+    VideoViewComponent
   ],
   imports: [
     BrowserModule,

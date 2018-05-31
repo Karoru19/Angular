@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { VideoItem } from '../../models/video-item';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-video-element',
@@ -9,7 +10,11 @@ import { VideoItem } from '../../models/video-item';
 export class VideoElementComponent implements OnInit {
   @Input() video: VideoItem;
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  playVideo() {
+    this.router.navigate(['/video', this.video.id]);
+  }
 
   ngOnInit() {}
 }

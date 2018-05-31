@@ -5,7 +5,7 @@
   <div>
     <div class="row mt-2">
       <div class="col-12">
-        <div class="video-title pointer" [title]='video.title'>{{(video.title.length > 37)?(video.title|slice:0:34)+'...':(video.title)}}</div>
+        <div class="video-title pointer" (click)="playVideo()" [title]='video.title'>{{(video.title.length > 37)?(video.title|slice:0:34)+'...':(video.title)}}</div>
       </div>
     </div>
     <div class="row">
