@@ -15,7 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { DerpiService } from './services/derpi/derpi.service';
 import { VideoViewComponent } from './components/video-view/video-view.component';
 import { HistoryComponent } from './components/history/history.component';
-import { PlaylistSidebarComponent } from './components/playlist-sidebar/playlist-sidebar.component';
+import { SidebarPlaylistEntryComponent } from './components/sidebar-playlist-entry/sidebar-playlist-entry.component';
+import { SidebarPlaylistListComponent } from './components/sidebar-playlist-list/sidebar-playlist-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PlaylistSidebarComponent } from './components/playlist-sidebar/playlist
     TestComponent,
     VideoViewComponent,
     HistoryComponent,
-    PlaylistSidebarComponent
+    SidebarPlaylistEntryComponent,
+    SidebarPlaylistListComponent
   ],
   imports: [
     BrowserModule,

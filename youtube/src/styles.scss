@@ -1,11 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-// html {
-//   height: 100%;
-// }
 
 body {
   background-color: #eee;
-  // height: 100%;
 }
 
 .notcard {
@@ -18,8 +14,7 @@ body {
   padding: 10px;
 }
 
-.notsidebar {
-  background-color: #4548e1;
+.sidebar {
   color: white;
   height: calc(100vh - 56px);
   padding: 10px;
@@ -28,14 +23,11 @@ body {
   margin-left: 0px;
   transition: margin 500ms ease;
   // box-shadow: 2px 0 4px rgba(0, 0, 0, .5);
-  // overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.nothidden {
-  display: none;
-}
-
-.notcontent {
+.content {
   margin-top: 56px;
   margin-left: 204px;
   transition: 500ms ease;
