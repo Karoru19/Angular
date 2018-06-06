@@ -16,5 +16,10 @@ export class HistoryComponent implements OnInit {
     console.log(this.history);
   }
 
+  deleteHistory() {
+    this.historyService.deleteHistory();
+    this.history = this.historyService.getHistory();
+  }
+
   ngOnInit() {}
 }

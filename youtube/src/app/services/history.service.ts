@@ -14,6 +14,7 @@ export class HistoryService {
   }
 
   addEntry(video: VideoItem) {
+    console.log(video.title);
     if (this.history.findIndex(x => x.id === video.id) !== -1) {
       this.history.splice(this.history.findIndex(x => x.id === video.id), 1);
     }
