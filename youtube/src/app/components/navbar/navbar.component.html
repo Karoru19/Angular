@@ -11,15 +11,15 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link active" href="/">Home
+        <a class="nav-link active" [routerLink]="['/']">Home
           <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/history">History</a>
+        <a class="nav-link" [routerLink]="['/history']">History</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/playlist">Playlist</a>
+        <a class="nav-link" [routerLink]="['/playlist']">Playlist</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 ml-auto" (ngSubmit)="goSearch()">

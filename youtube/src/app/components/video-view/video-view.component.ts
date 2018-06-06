@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { YtApiServiceService } from '../../services/yt-api-service.service';
 import { VideoDetails } from '../../models/video-details';
+import { HistoryService } from '../../services/history.service';
+import { VideoItem } from '../../models/video-item';
 
 @Component({
   selector: 'app-video-view',
@@ -11,10 +13,13 @@ import { VideoDetails } from '../../models/video-details';
 })
 export class VideoViewComponent implements OnInit {
   comments = [];
+  videoItem = {} as VideoItem;
+
   constructor(
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private yt: YtApiServiceService
+    private yt: YtApiServiceService,
+    private historyService: HistoryService
   ) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.yt.getVideo(this.id).subscribe(data => {
@@ -25,6 +30,13 @@ export class VideoViewComponent implements OnInit {
       this.video.likes = data.items[0].statistics.likeCount;
       this.video.dislikes = data.items[0].statistics.dislikeCount;
       this.video.views = data.items[0].statistics.viewCount;
+      this.videoItem.id = this.id;
+      this.videoItem.title = data.items[0].snippet.title;
+      this.videoItem.channelId = data.items[0].snippet.channelId;
+      this.videoItem.channelTitle = data.items[0].snippet.channelTitle;
+      this.videoItem.thumbnailUrl =
+        data.items[0].snippet.thumbnails.default.url;
+      historyService.addEntry(this.videoItem);
     });
     this.yt.getComments(this.id).subscribe(data => {
       this.comments = data.items.map(c => ({

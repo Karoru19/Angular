@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HistoryService } from '../../services/history.service';
+import { YtApiServiceService } from '../../services/yt-api-service.service';
+import { VideoItem } from '../../models/video-item';
 
 @Component({
   selector: 'app-history',
@@ -7,9 +9,12 @@ import { HistoryService } from '../../services/history.service';
   styleUrls: ['./history.component.scss']
 })
 export class HistoryComponent implements OnInit {
-  history: Array<String> = [];
+  history: Array<VideoItem> = [];
 
-  constructor(historyService: HistoryService) {}
+  constructor(private historyService: HistoryService) {
+    this.history = historyService.getHistory();
+    console.log(this.history);
+  }
 
   ngOnInit() {}
 }
