@@ -26,6 +26,10 @@ export class HistoryService {
     return this.history;
   }
 
+  getCount() {
+    return this.history.length;
+  }
+
   deleteHistory() {
     this.history = [];
     localStorage.setItem('history', JSON.stringify(this.history));
