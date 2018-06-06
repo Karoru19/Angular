@@ -1,9 +1,9 @@
-<div class="row no-gutters align-items-center mb-2 pointer pointed" (click)="playVideo()">
+<div class="row no-gutters align-items-center">
   <div class="col-1 index-size">{{id}}</div>
   <div class="col-4 text-center">
-    <img [src]="video.thumbnailUrl" width="35" class="minature" [title]="video.title"/>
+    <img [src]="video.thumbnailUrl" width="35" class="minature" [title]="video.title" />
   </div>
-  <div class="col-7">
+  <div class="col-auto">
     <div class="row">
       <div class="col-12">
         <span class="video-title" [title]="video.title">{{(video.title.length > 13)?(video.title|slice:0:10)+'...':(video.title)}}</span>
