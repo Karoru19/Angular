@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { YtApiServiceService } from '../../services/yt-api-service.service';
 import { VideoDetails } from '../../models/video-details';
@@ -20,7 +20,7 @@ export class VideoViewComponent implements OnInit {
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
     private yt: YtApiServiceService,
-    private router: Router
+    private router: Router,
     private historyService: HistoryService
   ) {
     this.route.paramMap.subscribe(params => {
