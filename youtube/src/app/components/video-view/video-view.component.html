@@ -65,7 +65,8 @@
       </div>
     </div>
     <div class="col-4">
-      <div *ngFor="let video of related" class="notcard notcard-padding mb-2 pointer" (click)="playVideo(video.id)" [title]="video.title">
+      <div *ngFor="let video of related" class="notcard notcard-padding mb-2 pointer" style="min-height: 110px" (click)="playVideo(video.id)"
+        [title]="video.title">
         <div class=" row ">
           <div class="col-auto ">
             <img [src]="video.thumbnailUrl ">
