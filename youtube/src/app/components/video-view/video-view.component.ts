@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { YtApiServiceService } from '../../services/yt-api-service.service';
 import { VideoDetails } from '../../models/video-details';
+import { VideoItem } from '../../models/video-item';
 
 @Component({
   selector: 'app-video-view',
@@ -10,6 +11,8 @@ import { VideoDetails } from '../../models/video-details';
   styleUrls: ['./video-view.component.scss']
 })
 export class VideoViewComponent implements OnInit {
+  comments = [];
+  related: Array<VideoItem> = [];
   constructor(
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
@@ -26,7 +29,30 @@ export class VideoViewComponent implements OnInit {
       this.video.views = data.items[0].statistics.viewCount;
     });
     this.yt.getComments(this.id).subscribe(data => {
-      console.log(data);
+      this.comments = data.items.map(c => ({
+        author: c.snippet.topLevelComment.snippet.authorDisplayName,
+        imgUrl: c.snippet.topLevelComment.snippet.authorProfileImageUrl,
+        likeCount: c.snippet.topLevelComment.snippet.likeCount,
+        text: c.snippet.topLevelComment.snippet.textOriginal,
+        replies:
+          c.replies === undefined
+            ? []
+            : c.replies.comments.map(r => ({
+                author: r.snippet.authorDisplayName,
+                imgUrl: r.snippet.authorProfileImageUrl,
+                likeCount: r.snippet.likeCount,
+                text: r.snippet.textOriginal
+              }))
+      }));
+    });
+    this.yt.getRelated(this.id).subscribe(data => {
+      this.related = data.items.map(i => ({
+        id: i.id.videoId,
+        title: i.snippet.title,
+        channelId: i.snippet.channelId,
+        channelTitle: i.snippet.channelTitle,
+        thumbnailUrl: i.snippet.thumbnails.default.url
+      }));
     });
   }
 

@@ -33,6 +33,18 @@ export class YtApiServiceService {
     return this.http.get<any>(url, options);
   }
 
+  getRelated(id: string) {
+    const url = this.base + 'search';
+    const params = new HttpParams()
+      .append('key', this.apiKey)
+      .append('part', 'snippet')
+      .append('maxResults', '20')
+      .append('relatedToVideoId', id)
+      .append('type', 'video');
+    const options = { params: params };
+    return this.http.get<any>(url, options);
+  }
+
   getComments(id: string) {
     const url = this.base + 'commentThreads';
     const params = new HttpParams()

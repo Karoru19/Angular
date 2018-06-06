@@ -1,16 +1,80 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mt-4">
     <div class="col-8">
-      <div class="embed-responsive embed-responsive-16by9">
+      <div class="embed-responsive embed-responsive-16by9 notcard">
         <iframe class="embed-responsive-item" [src]="safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </div>
+      <div *ngIf="video" class="notcard notcard-padding mt-2 mb-3">
+        <div class="h5 mb-1">
+          {{video.title}}
+        </div>
+        <div class="row justify-content-between">
+          <div class="col-auto">
+            {{video.views}} views
+          </div>
+          <div class="col-auto">
+            ↑{{video.likes}} ↓{{video.dislikes}}
+          </div>
+        </div>
+        <hr>
+        <div class="t-small" style="max-height: 150px; overflow-y: auto;">
+          {{video.description}}
+        </div>
+      </div>
+      <div *ngFor="let comment of comments" class="container-fluid p-0">
+        <div class="row no-gutters notcard notcard-padding mb-2">
+          <div class="col-auto">
+            <img width="32px" height="32px" class="mr-2" [src]="comment.imgUrl" style="border-radius: 50%">
+          </div>
+          <div class="col">
+            <div class="mb-1 t-small">
+              {{comment.text}}
+              <div class="row mt-1 justify-content-between">
+                <div class="col-auto t-small t-bold">
+                  {{comment.author}}
+                </div>
+                <div class="col-auto t-small">
+                  ↑{{comment.likeCount}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngFor="let reply of comment.replies" class="pl-4">
+          <div class="container-fluid notcard notcard-padding mb-2">
+            <div class="row no-gutters">
+              <div class="col-auto">
+                <img width="32px" height="32px" class="mr-2" [src]="reply.imgUrl" style="border-radius: 50%">
+              </div>
+              <div class="col">
+                <div class="mb-1 t-small">
+                  {{reply.text}}
+                  <div class="row mt-1 justify-content-between">
+                    <div class="col-auto t-small t-bold">
+                      {{reply.author}}
+                    </div>
+                    <div class="col-auto t-small">
+                      ↑{{reply.likeCount}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-8">
-      <div *ngIf="video">
-        {{video.title}}
+    <div class="col-4">
+      <div *ngFor="let video of related" class="notcard notcard-padding mb-2">
+        <div class="row">
+          <div class="col-auto">
+            <img [src]="video.thumbnailUrl">
+          </div>
+          <div class="col">
+            <div class="t-small">{{(video.title.length > 29)?(video.title|slice:0:26)+'...':(video.title)}}</div>
+            <div class="t-gray t-small">{{video.channelTitle}}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
