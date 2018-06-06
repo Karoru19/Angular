@@ -17,6 +17,7 @@ import { VideoViewComponent } from './components/video-view/video-view.component
 import { HistoryComponent } from './components/history/history.component';
 import { SidebarPlaylistEntryComponent } from './components/sidebar-playlist-entry/sidebar-playlist-entry.component';
 import { SidebarPlaylistListComponent } from './components/sidebar-playlist-list/sidebar-playlist-list.component';
+import { ChannelComponent } from './components/channel/channel.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SidebarPlaylistListComponent } from './components/sidebar-playlist-list
     TestComponent,
     VideoViewComponent,
     HistoryComponent,
+    ChannelComponent
     SidebarPlaylistEntryComponent,
     SidebarPlaylistListComponent
   ],

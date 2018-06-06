@@ -2,7 +2,7 @@
   <div class="mr-3">
     <img src="../../../assets/menu.svg" (click)="hide()">
   </div>
-  <a class="navbar-brand" href="#">YoTunbe</a>
+  <a class="navbar-brand" [routerLink]="['/']">YoTunbe</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -10,16 +10,20 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link active" href="/">Home
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" [routerLink]="['/']">Home
           <span class="sr-only">(current)</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/history">History</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/history']">History
+          <span class="badge badge-light">21</span>
+        </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/playlist">Playlist</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/playlist']">Playlist
+          <span class="badge badge-light">37</span>
+        </a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 ml-auto" (ngSubmit)="goSearch()">
