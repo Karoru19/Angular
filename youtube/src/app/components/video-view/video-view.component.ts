@@ -34,6 +34,13 @@ export class VideoViewComponent implements OnInit {
         this.video.likes = data.items[0].statistics.likeCount;
         this.video.dislikes = data.items[0].statistics.dislikeCount;
         this.video.views = data.items[0].statistics.viewCount;
+        this.videoItem.id = this.id;
+        this.videoItem.title = data.items[0].snippet.title;
+        this.videoItem.channelId = data.items[0].snippet.channelId;
+        this.videoItem.channelTitle = data.items[0].snippet.channelTitle;
+        this.videoItem.thumbnailUrl =
+          data.items[0].snippet.thumbnails.default.url;
+        historyService.addEntry(this.videoItem);
       });
       this.yt.getComments(this.id).subscribe(data => {
         this.comments = data.items.map(c => ({
