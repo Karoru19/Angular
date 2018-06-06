@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { YtApiServiceService } from '../../services/yt-api-service.service';
 import { VideoDetails } from '../../models/video-details';
+import { HistoryService } from '../../services/history.service';
 import { VideoItem } from '../../models/video-item';
 
 @Component({
@@ -13,11 +14,14 @@ import { VideoItem } from '../../models/video-item';
 export class VideoViewComponent implements OnInit {
   comments = [];
   related: Array<VideoItem> = [];
+  videoItem = {} as VideoItem;
+
   constructor(
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
     private yt: YtApiServiceService,
     private router: Router
+    private historyService: HistoryService
   ) {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');

@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
+import { VideoItem } from '../models/video-item';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HistoryService {
-  history: Array<String> = [];
+  history: Array<VideoItem> = [];
 
-  constructor() {}
-
-  addEntry(id: string) {
-    if (this.history.findIndex(x => x === id) !== -1) {
-      this.history.splice(this.history.findIndex(x => x === id), 1);
-      this.history.push(id);
-    } else {
-      this.history.push(id);
+  constructor() {
+    if (JSON.parse(localStorage.getItem('history')) != null) {
+      this.history = JSON.parse(localStorage.getItem('history'));
     }
+  }
+
+  addEntry(video: VideoItem) {
+    if (this.history.findIndex(x => x.id === video.id) !== -1) {
+      this.history.splice(this.history.findIndex(x => x.id === video.id), 1);
+    }
+    this.history.unshift(video);
+    localStorage.setItem('history', JSON.stringify(this.history));
   }
 
   getHistory() {
     return this.history;
+  }
+
+  deleteHistory() {
+    this.history = [];
+    localStorage.setItem('history', JSON.stringify(this.history));
   }
 }

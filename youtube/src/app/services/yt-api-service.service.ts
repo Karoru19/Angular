@@ -54,4 +54,26 @@ export class YtApiServiceService {
     const options = { params: params };
     return this.http.get<any>(url, options);
   }
+
+  getChannel(id: string) {
+    const url = this.base + 'channels';
+    const params = new HttpParams()
+      .append('key', this.apiKey)
+      .append('id', id)
+      .append('part', 'snippet,brandingSettings');
+    const options = { params: params };
+    return this.http.get<any>(url, options);
+  }
+
+  getChannelVideos(id: string) {
+    const url = this.base + 'search';
+    const params = new HttpParams()
+      .append('key', this.apiKey)
+      .append('channelId', id)
+      .append('part', 'snippet')
+      .append('order', 'date')
+      .append('maxResults', '50');
+    const options = { params: params };
+    return this.http.get<any>(url, options);
+  }
 }

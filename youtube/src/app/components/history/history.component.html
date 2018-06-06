@@ -1,3 +1,11 @@
-<p>
-  history works!
-</p>
+<div class="container">
+  <div class="row justify-content-center mb-3">
+    <div class="col-9">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 mt-4" *ngFor="let history of history">
+          <app-video-element [video]="history"></app-video-element>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
