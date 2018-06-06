@@ -13,6 +13,7 @@ import { VideoItem } from '../../models/video-item';
 })
 export class VideoViewComponent implements OnInit {
   comments = [];
+  related: Array<VideoItem> = [];
   videoItem = {} as VideoItem;
 
   constructor(
@@ -53,6 +54,15 @@ export class VideoViewComponent implements OnInit {
                 likeCount: r.snippet.likeCount,
                 text: r.snippet.textOriginal
               }))
+      }));
+    });
+    this.yt.getRelated(this.id).subscribe(data => {
+      this.related = data.items.map(i => ({
+        id: i.id.videoId,
+        title: i.snippet.title,
+        channelId: i.snippet.channelId,
+        channelTitle: i.snippet.channelTitle,
+        thumbnailUrl: i.snippet.thumbnails.default.url
       }));
     });
   }

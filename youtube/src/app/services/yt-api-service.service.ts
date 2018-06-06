@@ -38,7 +38,7 @@ export class YtApiServiceService {
     const params = new HttpParams()
       .append('key', this.apiKey)
       .append('part', 'snippet')
-      .append('maxResults', '50')
+      .append('maxResults', '20')
       .append('relatedToVideoId', id)
       .append('type', 'video');
     const options = { params: params };
