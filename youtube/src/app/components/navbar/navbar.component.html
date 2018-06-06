@@ -16,10 +16,14 @@
         </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/history']">History</a>
+        <a class="nav-link" [routerLink]="['/history']">History
+          <span class="badge badge-light">21</span>
+        </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/playlist']">Playlist</a>
+        <a class="nav-link" [routerLink]="['/playlist']">Playlist
+          <span class="badge badge-light">37</span>
+        </a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 ml-auto" (ngSubmit)="goSearch()">
