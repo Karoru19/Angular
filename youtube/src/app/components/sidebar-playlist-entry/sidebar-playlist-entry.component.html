@@ -1,0 +1,18 @@
+<div class="row no-gutters align-items-center">
+  <div class="col-1 index-size">{{id}}</div>
+  <div class="col-4 text-center">
+    <img [src]="video.thumbnailUrl" width="35" class="minature" [title]="video.title" />
+  </div>
+  <div class="col-auto">
+    <div class="row">
+      <div class="col-12">
+        <span class="video-title" [title]="video.title">{{(video.title.length > 13)?(video.title|slice:0:10)+'...':(video.title)}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <span class="channel-title" [title]="video.channelTitle">{{(video.channelTitle.length > 18)?(video.channelTitle|slice:0:15)+'...':(video.channelTitle)}}</span>
+      </div>
+    </div>
+  </div>
+</div>

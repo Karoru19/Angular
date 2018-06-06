@@ -15,6 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { DerpiService } from './services/derpi/derpi.service';
 import { VideoViewComponent } from './components/video-view/video-view.component';
 import { HistoryComponent } from './components/history/history.component';
+import { SidebarPlaylistEntryComponent } from './components/sidebar-playlist-entry/sidebar-playlist-entry.component';
+import { SidebarPlaylistListComponent } from './components/sidebar-playlist-list/sidebar-playlist-list.component';
 import { ChannelComponent } from './components/channel/channel.component';
 
 @NgModule({
@@ -28,6 +30,8 @@ import { ChannelComponent } from './components/channel/channel.component';
     VideoViewComponent,
     HistoryComponent,
     ChannelComponent
+    SidebarPlaylistEntryComponent,
+    SidebarPlaylistListComponent
   ],
   imports: [
     BrowserModule,

@@ -2,10 +2,10 @@
   <app-navbar (hideSidebar)="hideSidebar($event)"></app-navbar>
 </div>
 <div class="row no-gutters">
-  <div [ngStyle]="{'margin-left.px': sizeSidebar}" class="notsidebar fixed-top sidecolor">
+  <div [ngStyle]="{'margin-left.px': sizeSidebar}" class="sidebar fixed-top sidecolor">
     <app-sidebar></app-sidebar>
   </div>
-  <div class="col notcontent" [ngStyle]="{'margin-left.px': sizeContent}">
+  <div class="col content" [ngStyle]="{'margin-left.px': sizeContent}">
     <router-outlet></router-outlet>
   </div>
 </div>
