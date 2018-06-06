@@ -18,7 +18,9 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router) {}
 
   goSearch() {
-    this.router.navigate(['/videos', { query: this.query }]);
+    if (this.query !== '') {
+      this.router.navigate(['/videos', { query: this.query }]);
+    }
   }
 
   ngOnInit() {}
