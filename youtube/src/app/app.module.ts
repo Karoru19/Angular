@@ -12,12 +12,13 @@ import { TestComponent } from './components/test/test.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
-import { DerpiService } from './services/derpi/derpi.service';
 import { VideoViewComponent } from './components/video-view/video-view.component';
 import { HistoryComponent } from './components/history/history.component';
 import { SidebarPlaylistEntryComponent } from './components/sidebar-playlist-entry/sidebar-playlist-entry.component';
 import { SidebarPlaylistListComponent } from './components/sidebar-playlist-list/sidebar-playlist-list.component';
 import { ChannelComponent } from './components/channel/channel.component';
+import { PlaylistListComponent } from './components/playlist-list/playlist-list.component';
+import { PlaylistElementComponent } from './components/playlist-element/playlist-element.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +30,11 @@ import { ChannelComponent } from './components/channel/channel.component';
     TestComponent,
     VideoViewComponent,
     HistoryComponent,
-    ChannelComponent
+    ChannelComponent,
     SidebarPlaylistEntryComponent,
-    SidebarPlaylistListComponent
+    SidebarPlaylistListComponent,
+    PlaylistListComponent,
+    PlaylistElementComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,7 @@ import { ChannelComponent } from './components/channel/channel.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [DerpiService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

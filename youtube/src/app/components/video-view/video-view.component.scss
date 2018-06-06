@@ -9,3 +9,25 @@
 .t-gray {
   color: rgba(17, 17, 17, 0.6);
 }
+
+/* width */
+.description::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.description::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #bbb; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+.description::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.description::-webkit-scrollbar-thumb:hover {
+  background: #999; 
+}
