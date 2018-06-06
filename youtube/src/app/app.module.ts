@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { DerpiService } from './services/derpi/derpi.service';
 import { VideoViewComponent } from './components/video-view/video-view.component';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { VideoViewComponent } from './components/video-view/video-view.component
     VideoListComponent,
     VideoElementComponent,
     TestComponent,
-    VideoViewComponent
+    VideoViewComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
