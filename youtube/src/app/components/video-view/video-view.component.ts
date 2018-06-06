@@ -25,6 +25,9 @@ export class VideoViewComponent implements OnInit {
       this.video.dislikes = data.items[0].statistics.dislikeCount;
       this.video.views = data.items[0].statistics.viewCount;
     });
+    this.yt.getComments(this.id).subscribe(data => {
+      console.log(data);
+    });
   }
 
   id: string;

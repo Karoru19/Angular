@@ -32,4 +32,14 @@ export class YtApiServiceService {
     const options = { params: params };
     return this.http.get<any>(url, options);
   }
+
+  getComments(id: string) {
+    const url = this.base + 'commentThreads';
+    const params = new HttpParams()
+      .append('key', this.apiKey)
+      .append('videoId', id)
+      .append('part', 'snippet,replies');
+    const options = { params: params };
+    return this.http.get<any>(url, options);
+  }
 }
