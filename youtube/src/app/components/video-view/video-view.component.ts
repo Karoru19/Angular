@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { YtApiServiceService } from '../../services/yt-api-service.service';
 import { VideoDetails } from '../../models/video-details';
@@ -16,43 +16,48 @@ export class VideoViewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private yt: YtApiServiceService
+    private yt: YtApiServiceService,
+    private router: Router
   ) {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.yt.getVideo(this.id).subscribe(data => {
-      this.video.title = data.items[0].snippet.title;
-      this.video.channelTitle = data.items[0].snippet.channelTitle;
-      this.video.channelId = data.items[0].snippet.channelId;
-      this.video.description = data.items[0].snippet.description;
-      this.video.likes = data.items[0].statistics.likeCount;
-      this.video.dislikes = data.items[0].statistics.dislikeCount;
-      this.video.views = data.items[0].statistics.viewCount;
-    });
-    this.yt.getComments(this.id).subscribe(data => {
-      this.comments = data.items.map(c => ({
-        author: c.snippet.topLevelComment.snippet.authorDisplayName,
-        imgUrl: c.snippet.topLevelComment.snippet.authorProfileImageUrl,
-        likeCount: c.snippet.topLevelComment.snippet.likeCount,
-        text: c.snippet.topLevelComment.snippet.textOriginal,
-        replies:
-          c.replies === undefined
-            ? []
-            : c.replies.comments.map(r => ({
-                author: r.snippet.authorDisplayName,
-                imgUrl: r.snippet.authorProfileImageUrl,
-                likeCount: r.snippet.likeCount,
-                text: r.snippet.textOriginal
-              }))
-      }));
-    });
-    this.yt.getRelated(this.id).subscribe(data => {
-      this.related = data.items.map(i => ({
-        id: i.id.videoId,
-        title: i.snippet.title,
-        channelId: i.snippet.channelId,
-        channelTitle: i.snippet.channelTitle,
-        thumbnailUrl: i.snippet.thumbnails.default.url
-      }));
+    this.route.paramMap.subscribe(params => {
+      this.id = params.get('id');
+      console.log(this.id);
+      this.yt.getVideo(this.id).subscribe(data => {
+        this.video.title = data.items[0].snippet.title;
+        this.video.channelTitle = data.items[0].snippet.channelTitle;
+        this.video.channelId = data.items[0].snippet.channelId;
+        this.video.description = data.items[0].snippet.description;
+        this.video.likes = data.items[0].statistics.likeCount;
+        this.video.dislikes = data.items[0].statistics.dislikeCount;
+        this.video.views = data.items[0].statistics.viewCount;
+      });
+      this.yt.getComments(this.id).subscribe(data => {
+        this.comments = data.items.map(c => ({
+          author: c.snippet.topLevelComment.snippet.authorDisplayName,
+          imgUrl: c.snippet.topLevelComment.snippet.authorProfileImageUrl,
+          likeCount: c.snippet.topLevelComment.snippet.likeCount,
+          text: c.snippet.topLevelComment.snippet.textOriginal,
+          replies:
+            c.replies === undefined
+              ? []
+              : c.replies.comments.map(r => ({
+                  author: r.snippet.authorDisplayName,
+                  imgUrl: r.snippet.authorProfileImageUrl,
+                  likeCount: r.snippet.likeCount,
+                  text: r.snippet.textOriginal
+                }))
+        }));
+      });
+      this.yt.getRelated(this.id).subscribe(data => {
+        this.related = data.items.map(i => ({
+          id: i.id.videoId,
+          title: i.snippet.title,
+          channelId: i.snippet.channelId,
+          channelTitle: i.snippet.channelTitle,
+          thumbnailUrl: i.snippet.thumbnails.default.url
+        }));
+      });
+      this.makeSafeUrl();
     });
   }
 
@@ -62,6 +67,10 @@ export class VideoViewComponent implements OnInit {
 
   ngOnInit() {
     this.makeSafeUrl();
+  }
+
+  playVideo(id) {
+    this.router.navigate(['/video', id]);
   }
 
   makeSafeUrl() {

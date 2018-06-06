@@ -65,14 +65,14 @@
       </div>
     </div>
     <div class="col-4">
-      <div *ngFor="let video of related" class="notcard notcard-padding mb-2">
-        <div class="row">
-          <div class="col-auto">
-            <img [src]="video.thumbnailUrl">
+      <div *ngFor="let video of related" class="notcard notcard-padding mb-2 pointer" (click)="playVideo(video.id)" [title]="video.title">
+        <div class=" row ">
+          <div class="col-auto ">
+            <img [src]="video.thumbnailUrl ">
           </div>
-          <div class="col">
-            <div class="t-small">{{(video.title.length > 29)?(video.title|slice:0:26)+'...':(video.title)}}</div>
-            <div class="t-gray t-small">{{video.channelTitle}}</div>
+          <div class="col ">
+            <div class="t-small ">{{(video.title.length > 29)?(video.title|slice:0:26)+'...':(video.title)}}</div>
+            <div class="t-gray t-small ">{{video.channelTitle}}</div>
           </div>
         </div>
       </div>
