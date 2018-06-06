@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { YtApiServiceService } from '../../services/yt-api-service.service';
 import { VideoDetails } from '../../models/video-details';
+import { VideoItem } from '../../models/video-item';
 
 @Component({
   selector: 'app-video-view',
@@ -11,6 +12,7 @@ import { VideoDetails } from '../../models/video-details';
 })
 export class VideoViewComponent implements OnInit {
   comments = [];
+  related: Array<VideoItem> = [];
   constructor(
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
@@ -41,6 +43,15 @@ export class VideoViewComponent implements OnInit {
                 likeCount: r.snippet.likeCount,
                 text: r.snippet.textOriginal
               }))
+      }));
+    });
+    this.yt.getRelated(this.id).subscribe(data => {
+      this.related = data.items.map(i => ({
+        id: i.id.videoId,
+        title: i.snippet.title,
+        channelId: i.snippet.channelId,
+        channelTitle: i.snippet.channelTitle,
+        thumbnailUrl: i.snippet.thumbnails.default.url
       }));
     });
   }
