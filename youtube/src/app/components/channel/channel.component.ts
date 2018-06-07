@@ -9,6 +9,8 @@ import { VideoItem } from '../../models/video-item';
   styleUrls: ['./channel.component.scss']
 })
 export class ChannelComponent implements OnInit {
+  banner: string;
+  title: string;
   constructor(
     private ytService: YtApiServiceService,
     private route: ActivatedRoute
@@ -23,6 +25,10 @@ export class ChannelComponent implements OnInit {
           channelTitle: element.snippet.channelTitle,
           thumbnailUrl: element.snippet.thumbnails.default.url
         }));
+      });
+      this.ytService.getChannel(this.id).subscribe(data => {
+        this.banner = data.items['0'].brandingSettings.image.bannerImageUrl;
+        this.title = data.items['0'].snippet.title;
       });
     });
   }
