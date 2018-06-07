@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VideoItem } from '../../models/video-item';
-import { YtApiServiceService } from '../../services/yt-api-service.service';
+// import { YtApiServiceService } from '../../services/yt-api-service.service';
+import { PlaylistItem } from '../../models/playlist-item';
+import { PlaylistService } from '../../services/playlist.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar-playlist-list',
@@ -8,19 +10,10 @@ import { YtApiServiceService } from '../../services/yt-api-service.service';
   styleUrls: ['./sidebar-playlist-list.component.scss']
 })
 export class SidebarPlaylistListComponent implements OnInit {
-  playlist: Array < VideoItem > = [];
+  playlist: Array < PlaylistItem > = [];
 
-  constructor(private yt: YtApiServiceService) {
-    const query = 'jyc row';
-    yt.getVideos(query).subscribe(data => {
-      this.playlist = data.items.map(element => ({
-        id: element.id.videoId,
-        title: element.snippet.title,
-        channelId: element.snippet.channelId,
-        channelTitle: element.snippet.channelTitle,
-        thumbnailUrl: element.snippet.thumbnails.default.url
-      }));
-    });
+  constructor(public router: Router, private ps: PlaylistService) {
+    this.playlist = ps.getPlaylist();
   }
 
   ngOnInit() {}

@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { HistoryService } from '../../services/history.service';
+import { PlaylistService } from '../../services/playlist.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +17,9 @@ export class NavbarComponent implements OnInit {
     this.hideSidebar.emit(null);
   }
 
-  constructor(private router: Router, public historyService: HistoryService) {}
+  constructor(private router: Router,
+    public historyService: HistoryService,
+    public playlistService: PlaylistService) {}
 
   goSearch() {
     if (this.query !== '') {

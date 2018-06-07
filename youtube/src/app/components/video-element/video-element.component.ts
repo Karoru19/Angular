@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { VideoItem } from '../../models/video-item';
 import { Router } from '@angular/router';
+import { PlaylistService } from '../../services/playlist.service';
 
 @Component({
   selector: 'app-video-element',
@@ -10,11 +11,25 @@ import { Router } from '@angular/router';
 export class VideoElementComponent implements OnInit {
   @Input() video: VideoItem;
 
-  constructor(private router: Router) {}
+  isInPlaylist: boolean;
+
+  constructor(private router: Router, private playlistService: PlaylistService) {}
 
   playVideo() {
     this.router.navigate(['/video', this.video.id]);
   }
 
-  ngOnInit() {}
+  addToPlaylist() {
+    this.playlistService.addEntry(this.video);
+    this.isInPlaylist = true;
+  }
+
+  removeFromPlaylist() {
+    this.playlistService.deleteEntry(this.video);
+    this.isInPlaylist = false;
+  }
+
+  ngOnInit() {
+    this.isInPlaylist = this.playlistService.exists(this.video);
+  }
 }

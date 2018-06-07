@@ -5,6 +5,8 @@ import { YtApiServiceService } from '../../services/yt-api-service.service';
 import { VideoDetails } from '../../models/video-details';
 import { HistoryService } from '../../services/history.service';
 import { VideoItem } from '../../models/video-item';
+import { PlaylistService } from '../../services/playlist.service';
+import { PlaylistItem } from '../../models/playlist-item';
 
 @Component({
   selector: 'app-video-view',
@@ -14,13 +16,21 @@ import { VideoItem } from '../../models/video-item';
 export class VideoViewComponent implements OnInit {
   comments = [];
   related: Array<VideoItem> = [];
+  id: string;
+  video = {} as VideoDetails;
+  safe;
+  thumbnailUrl: string;
+  isInPlaylist: boolean;
+  isNext: boolean;
+  nextVideo: PlaylistItem;
 
   constructor(
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
     private yt: YtApiServiceService,
     private router: Router,
-    private historyService: HistoryService
+    private historyService: HistoryService,
+    private playlistService: PlaylistService
   ) {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id');
@@ -33,6 +43,7 @@ export class VideoViewComponent implements OnInit {
         this.video.likes = data.items[0].statistics.likeCount;
         this.video.dislikes = data.items[0].statistics.dislikeCount;
         this.video.views = data.items[0].statistics.viewCount;
+        this.thumbnailUrl = data.items[0].snippet.thumbnails.default.url;
         historyService.addEntry({
           id: this.id,
           title: data.items[0].snippet.title,
@@ -71,16 +82,48 @@ export class VideoViewComponent implements OnInit {
     });
   }
 
-  id: string;
-  video = {} as VideoDetails;
-  safe;
-
   ngOnInit() {
     this.makeSafeUrl();
+    const el: VideoItem = {
+      id: this.id,
+      channelId: this.video.channelId,
+      channelTitle: this.video.channelTitle,
+      title: this.video.title,
+      thumbnailUrl: this.thumbnailUrl
+    };
+    this.isInPlaylist = this.playlistService.exists(el);
+    this.isNext = this.playlistService.isNext(this.id);
+    if (this.isInPlaylist) {
+      this.nextVideo = this.playlistService.getNext(this.playlistService.getCurrent(this.id).id);
+    }
   }
 
   playVideo(id) {
     this.router.navigate(['/video', id]);
+  }
+
+  addToPlaylist() {
+    const el: VideoItem = {
+      id: this.id,
+      channelId: this.video.channelId,
+      channelTitle: this.video.channelTitle,
+      title: this.video.title,
+      thumbnailUrl: this.thumbnailUrl
+    };
+    this.playlistService.addEntry(el);
+    this.isInPlaylist = true;
+  }
+
+  removeFromPlaylist() {
+    const el: VideoItem = {
+      id: this.id,
+      channelId: this.video.channelId,
+      channelTitle: this.video.channelTitle,
+      title: this.video.title,
+      thumbnailUrl: this.thumbnailUrl
+    };
+    this.playlistService.deleteEntry(el);
+    this.isInPlaylist = false;
   }
 
   makeSafeUrl() {
