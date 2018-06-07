@@ -1,6 +1,6 @@
-<div *ngFor="let video of playlist; let i = index">
+<div *ngFor="let video of playlist; let i = index; let f=first; let l=last">
   <div class="notcard mt-3 ml-3 mr-3">
-    <app-playlist-element [video]="video" [id]="i+1" (updatePlaylist)="updatePlaylist()"></app-playlist-element>
+    <app-playlist-element [video]="video" [id]="i+1" [first]="f" [last]="l" (updatePlaylist)="updatePlaylist()"></app-playlist-element>
   </div>
 </div>
   

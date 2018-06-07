@@ -73,7 +73,6 @@ export class PlaylistService {
     video.id -= 1;
     el.id += 1;
     localStorage.setItem('playlist', JSON.stringify(this.playlist));
-    console.log('up');
   }
 
   down(video: PlaylistItem) {
@@ -84,6 +83,5 @@ export class PlaylistService {
     video.id += 1;
     el.id -= 1;
     localStorage.setItem('playlist', JSON.stringify(this.playlist));
-    console.log('down');
   }
 }

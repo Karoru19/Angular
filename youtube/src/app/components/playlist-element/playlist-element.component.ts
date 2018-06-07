@@ -11,13 +11,11 @@ import { PlaylistService } from '../../services/playlist.service';
 export class PlaylistElementComponent implements OnInit {
   @Input() video: PlaylistItem;
   @Input() id: number;
+  @Input() first: boolean;
+  @Input() last: boolean;
   @Output() updatePlaylist = new EventEmitter<any>();
 
-  length: number;
-
-  constructor(private router: Router, private playlistService: PlaylistService) {
-    this.length = playlistService.getCount();
-  }
+  constructor(private router: Router, private playlistService: PlaylistService) { }
 
   playVideo() {
     this.router.navigate(['/video', this.video.videoId]);
@@ -30,6 +28,17 @@ export class PlaylistElementComponent implements OnInit {
 
   down() {
     this.playlistService.down(this.video);
+    this.updatePlaylist.emit();
+  }
+
+  remove() {
+    this.playlistService.deleteEntry({
+      id: this.video.videoId,
+      title: this.video.title,
+      channelId: this.video.channelId,
+      channelTitle: this.video.channelTitle,
+      thumbnailUrl: this.video.thumbnailUrl
+    });
     this.updatePlaylist.emit();
   }
 
