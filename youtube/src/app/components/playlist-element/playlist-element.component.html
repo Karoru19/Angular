@@ -1,3 +1,37 @@
-<p>
-  playlist-element works!
-</p>
+<div class="row no-gutters align-items-center">
+  <div class="col-1 index-size text-center pointer" (click)="playVideo()">{{id}}</div>
+  <div class="col-2 text-center pointer" (click)="playVideo()">
+    <img [src]="video.thumbnailUrl" width="100" class="minature" [title]="video.title" (click)="playVideo()" />
+  </div>
+  <div class="col-auto pointer">
+    <div class="row" (click)="playVideo()">
+      <div class="col-12">
+        <span class="video-title" [title]="video.title">{{(video.title.length > 58)?(video.title|slice:0:55)+'...':(video.title)}}</span>
+      </div>
+    </div>
+    <div class="row" (click)="playVideo()">
+      <div class="col-12">
+        <span class="channel-title" [title]="video.channelTitle">{{(video.channelTitle.length > 58)?(video.channelTitle|slice:0:55)+'...':(video.channelTitle)}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto mr-2 ml-auto pointer">
+    <div *ngIf="id !== 1">
+      <svg style="width:24px;height:24px" viewBox="0 0 24 24" (click)="up()">
+        <path fill="#000000" d="M14,20H10V11L6.5,14.5L4.08,12.08L12,4.16L19.92,12.08L17.5,14.5L14,11V20Z" />
+      </svg>
+    </div>
+  </div>
+  <div class="col-auto mr-2 pointer down">
+    <div *ngIf="id !== length">
+      <svg style="width:24px;height:24px" viewBox="0 0 24 24" (click)="down()">
+        <path fill="#000000" d="M10,4H14V13L17.5,9.5L19.92,11.92L12,19.84L4.08,11.92L6.5,9.5L10,13V4Z" />
+      </svg>
+    </div>
+  </div>
+  <div class="col-auto mr-2 pointer">
+    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+      <path fill="#000000" d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+    </svg>
+  </div>
+</div>

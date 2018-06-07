@@ -64,4 +64,26 @@ export class PlaylistService {
     this.playlist = [];
     localStorage.setItem('playlist', JSON.stringify(this.playlist));
   }
+
+  up(video: PlaylistItem) {
+    if (video.id === 1) {
+      return;
+    }
+    const el = this.playlist.find(x => x.id === video.id - 1);
+    video.id -= 1;
+    el.id += 1;
+    localStorage.setItem('playlist', JSON.stringify(this.playlist));
+    console.log('up');
+  }
+
+  down(video: PlaylistItem) {
+    if (video.id === this.playlist.length) {
+      return;
+    }
+    const el = this.playlist.find(x => x.id === video.id + 1);
+    video.id += 1;
+    el.id -= 1;
+    localStorage.setItem('playlist', JSON.stringify(this.playlist));
+    console.log('down');
+  }
 }

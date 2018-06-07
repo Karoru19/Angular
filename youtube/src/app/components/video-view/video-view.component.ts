@@ -84,14 +84,13 @@ export class VideoViewComponent implements OnInit {
 
   ngOnInit() {
     this.makeSafeUrl();
-    const el: VideoItem = {
+    this.isInPlaylist = this.playlistService.exists({
       id: this.id,
       channelId: this.video.channelId,
       channelTitle: this.video.channelTitle,
       title: this.video.title,
       thumbnailUrl: this.thumbnailUrl
-    };
-    this.isInPlaylist = this.playlistService.exists(el);
+    });
     this.isNext = this.playlistService.isNext(this.id);
     if (this.isInPlaylist) {
       this.nextVideo = this.playlistService.getNext(this.playlistService.getCurrent(this.id).id);
@@ -111,7 +110,13 @@ export class VideoViewComponent implements OnInit {
       thumbnailUrl: this.thumbnailUrl
     };
     this.playlistService.addEntry(el);
-    this.isInPlaylist = true;
+    this.isInPlaylist = this.playlistService.exists({
+      id: this.id,
+      channelId: this.video.channelId,
+      channelTitle: this.video.channelTitle,
+      title: this.video.title,
+      thumbnailUrl: this.thumbnailUrl
+    });
   }
 
   removeFromPlaylist() {
@@ -123,7 +128,13 @@ export class VideoViewComponent implements OnInit {
       thumbnailUrl: this.thumbnailUrl
     };
     this.playlistService.deleteEntry(el);
-    this.isInPlaylist = false;
+    this.isInPlaylist = this.playlistService.exists({
+      id: this.id,
+      channelId: this.video.channelId,
+      channelTitle: this.video.channelTitle,
+      title: this.video.title,
+      thumbnailUrl: this.thumbnailUrl
+    });
   }
 
   makeSafeUrl() {
