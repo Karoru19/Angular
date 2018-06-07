@@ -19,6 +19,10 @@ export class VideoElementComponent implements OnInit {
     this.router.navigate(['/video', this.video.id]);
   }
 
+  goChannel(){
+    this.router.navigate(['/channel', this.video.channelId]);
+  }
+
   addToPlaylist() {
     this.playlistService.addEntry(this.video);
     this.isInPlaylist = true;

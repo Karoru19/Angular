@@ -3,16 +3,16 @@
     <div class="miniature">
       <img class="img-fluid pointer" style="border-radius: 2px" (click)="playVideo()" [src]="video.thumbnailUrl" width="100%">
       <div class="playlist pointer">
-          <div *ngIf="!isInPlaylist">
-            <svg style="width:24px;height:24px" viewBox="0 0 24 24" (click)="addToPlaylist()">
-              <path fill="#fff" d="M2,16H10V14H2M18,14V10H16V14H12V16H16V20H18V16H22V14M14,6H2V8H14M14,10H2V12H14V10Z" />
-            </svg>
-          </div>
-          <div *ngIf="isInPlaylist">
-            <svg style="width:24px;height:24px" viewBox="0 0 24 24" (click)="removeFromPlaylist()">
-              <path fill="#fff" d="M2,16H10V14H2M12,14V16H22V14M14,6H2V8H14M14,10H2V12H14V10Z" />
-            </svg>
-          </div>
+        <div *ngIf="!isInPlaylist">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24" (click)="addToPlaylist()">
+            <path fill="#fff" d="M2,16H10V14H2M18,14V10H16V14H12V16H16V20H18V16H22V14M14,6H2V8H14M14,10H2V12H14V10Z" />
+          </svg>
+        </div>
+        <div *ngIf="isInPlaylist">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24" (click)="removeFromPlaylist()">
+            <path fill="#fff" d="M2,16H10V14H2M12,14V16H22V14M14,6H2V8H14M14,10H2V12H14V10Z" />
+          </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <div class="channel-title">{{video.channelTitle}}</div>
+        <div class="channel-title pointer" (click)="goChannel()">{{video.channelTitle}}</div>
       </div>
     </div>
   </div>
