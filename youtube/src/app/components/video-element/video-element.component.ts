@@ -19,7 +19,7 @@ export class VideoElementComponent implements OnInit {
     this.router.navigate(['/video', this.video.id]);
   }
 
-  goChannel(){
+  goChannel() {
     this.router.navigate(['/channel', this.video.channelId]);
   }
 

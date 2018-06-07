@@ -51,6 +51,18 @@ export class VideoViewComponent implements OnInit {
           channelTitle: data.items[0].snippet.channelTitle,
           thumbnailUrl: data.items[0].snippet.thumbnails.default.url
         });
+        this.isInPlaylist = this.playlistService.exists({
+          id: this.id,
+          channelId: this.video.channelId,
+          channelTitle: this.video.channelTitle,
+          title: this.video.title,
+          thumbnailUrl: this.thumbnailUrl
+        });
+        console.log(this.id);
+        this.isNext = this.playlistService.isNext(this.id);
+        if (this.isInPlaylist) {
+          this.nextVideo = this.playlistService.getNext(this.playlistService.getCurrent(this.id).id);
+        }
       });
       this.yt.getComments(this.id).subscribe(data => {
         this.comments = data.items.map(c => ({
@@ -84,17 +96,6 @@ export class VideoViewComponent implements OnInit {
 
   ngOnInit() {
     this.makeSafeUrl();
-    this.isInPlaylist = this.playlistService.exists({
-      id: this.id,
-      channelId: this.video.channelId,
-      channelTitle: this.video.channelTitle,
-      title: this.video.title,
-      thumbnailUrl: this.thumbnailUrl
-    });
-    this.isNext = this.playlistService.isNext(this.id);
-    if (this.isInPlaylist) {
-      this.nextVideo = this.playlistService.getNext(this.playlistService.getCurrent(this.id).id);
-    }
   }
 
   playVideo(id) {

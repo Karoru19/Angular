@@ -48,6 +48,9 @@ export class PlaylistService {
   }
 
   isNext(videoId: string) {
+    if (this.playlist.find(x => x.videoId === videoId) === undefined) {
+      return false;
+    }
     return this.playlist.find(x => x.videoId === videoId).id === this.playlist.length ? false : true;
   }
 
@@ -57,6 +60,9 @@ export class PlaylistService {
 
   deleteEntry(video: VideoItem) {
     this.playlist.splice(this.playlist.findIndex(x => x.videoId === video.id), 1);
+    this.playlist.forEach((element, idx) => {
+      element.id = idx + 1;
+    });
     localStorage.setItem('playlist', JSON.stringify(this.playlist));
   }
 

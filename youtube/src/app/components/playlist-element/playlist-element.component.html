@@ -9,7 +9,7 @@
         <span class="video-title" [title]="video.title">{{(video.title.length > 58)?(video.title|slice:0:55)+'...':(video.title)}}</span>
       </div>
     </div>
-    <div class="row" (click)="playVideo()">
+    <div class="row" (click)="goChannel()">
       <div class="col-12">
         <span class="channel-title" [title]="video.channelTitle">{{(video.channelTitle.length > 58)?(video.channelTitle|slice:0:55)+'...':(video.channelTitle)}}</span>
       </div>
